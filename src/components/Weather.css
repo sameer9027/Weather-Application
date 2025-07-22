@@ -1,0 +1,235 @@
+
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --text-color: #f8f9fa;
+  --background-gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+  --card-bg: rgba(255, 255, 255, 0.15);
+  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --border-radius: 16px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: var(--background-gradient);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+/* Container Styles */
+.container {
+  width: 50vw;
+  max-width: 620px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.inputfield {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  padding-right: 3rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.inputfield::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.inputfield:focus {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+
+#searchlogo {
+  position: absolute;
+  right: 1rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#searchlogo:hover {
+  transform: scale(1.1);
+}
+
+/* Weather Icon Styles */
+.sunlogo {
+  margin: 1rem 0;
+}
+
+.sunlogo img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  /* Will be dynamically changed based on weather condition */
+}
+
+/* Temperature Styles */
+.tempraturecont {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  /* Temperature value will be dynamic */
+}
+
+.city {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  /* City name will be dynamic */
+}
+
+/* Footer Stats Styles */
+.foot {
+  display: flex;
+  FLE
+  justify-content: space-between;
+  margin-top: 2rem;
+ 
+   flex-direction: ROW;
+  
+}
+
+.HumidityCont, .windcont  , .Tempcont  {
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  width: 48%;
+  transition: var(--transition);
+  width: calc(50% - 2rem); 
+}
+
+.HumidityCont:hover, .windcont:hover , .Tempcont:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.HumidityCont img, .windcont img ,.Tempcont:hover {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+.HumidityCont img, .windcont img , .Tempcont img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+
+.HumidityCont span:first-of-type, 
+.windcont span:first-of-type, .Tempcont span:first-of-type{
+  font-size: 1.2rem;
+  font-weight: 600;
+  /* These values will be dynamic */
+}
+
+.WIND, .HumidityCont span:last-of-type {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-top: 0.3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 412px) {
+  .container {
+   
+    width:100%;
+    padding : 3rem;
+     margin : 2 2;
+     height : 100vh;
+  }
+  .foot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  flex-wrap: wrap; 
+}
+  .HumidityCont img, .windcont img , .Tempcont img {
+     
+  display:flex;
+  flex-direction: column;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 0.002rem;
+}
+
+  .tempraturecont {
+    font-size: 3rem;
+  }
+  
+  .city {
+    font-size: 1.2rem;
+  }
+
+  .HumidityCont, .windcont, .Tempcont {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Animation for API loading state */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Dynamic weather condition classes - will be added via JS based on API data */
+.weather-sunny .sunlogo img {
+  filter: drop-shadow(0 0 15px #f8d56b);
+}
+
+.weather-rainy {
+  --primary-color: #4a6fa5;
+  --secondary-color: #166088;
+  --accent-color: #4fc3f7;
+}
+
+.weather-cloudy {
+  --primary-color: #6c757d;
+  --secondary-color: #495057;
+  --accent-color: #adb5bd;
+}
